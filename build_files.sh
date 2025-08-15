@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-echo "Instalando django ..."
-python3 -m pip install django
+echo "[BUILD PHASE]: Instalando django ..."
+python3 -m pip3 install django
 
-echo "Migrando banco de dados..."
+echo "[BUILD PHASE]: Instalando rest_framework ..."
+python3 -m pip3 install djangorestframework
+
+echo "[BUILD PHASE]: Instalando django-cors-headers ..."
+python3 -m pip3 install django-cors-headers
+
+echo "[BUILD PHASE]: Migrando banco de dados..."
 python3 manage.py makemigrations --noinput
 python3 manage.py migrate --noinput
 
-echo "Coletando arquivos estáticos..."
+echo "[BUILD PHASE]: Coletando arquivos estáticos..."
 python3 manage.py collectstatic --noinput
