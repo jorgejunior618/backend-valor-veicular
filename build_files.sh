@@ -14,4 +14,4 @@ echo "[BUILD PHASE]: Migrando banco de dados..."
 # python3 manage.py migrate --noinput
 
 echo "[BUILD PHASE]: Coletando arquivos estáticos..."
-python3 manage.py collectstatic --noinput
+# python3 manage.py collectstatic --noinput
