@@ -7,12 +7,6 @@ from .models import Carro
 from .serializers import CarroSerializer
 
 class PrevisaoApiView(APIView):
-  def get(self, req):
-    carros = Carro.objects.all()
-    serializer = CarroSerializer(carros, many=True)
-
-    return Response(serializer.data)
-  
   def post(self, req):
     serializer = CarroSerializer(data=req.data)
     serializer.is_valid(raise_exception=True)
