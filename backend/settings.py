@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'previsoes',
     'rest_framework',
     'corsheaders',
+    'joblib',
 ]
 
 MIDDLEWARE = [
