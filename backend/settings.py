@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'joblib',
+    'pandas',
+    'sklearn',
+    'category_encoders',
 ]
 
 MIDDLEWARE = [

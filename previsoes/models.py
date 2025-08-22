@@ -2,22 +2,20 @@ from django.db import models
 
 class Base(models.Model):
   pass
-
 class Carro(Base):
-  marca = models.CharField
-  modelo = models.CharField
-  ano = models.IntegerField
-  quilometragem = models.IntegerField
-  combustivel = models.CharField
-  cor = models.CharField
-  transmissao = models.CharField
-  adicionais = models.CharField
-  condicao = models.CharField
-  acidente = models.BooleanField
+  Car_Model = models.CharField
+  Year = models.IntegerField
+  Mileage = models.IntegerField
+  Fuel_Type = models.CharField
+  Color = models.CharField
+  Transmission = models.CharField
+  Options_Features = models.CharField
+  Condition = models.CharField
+  Accident = models.BooleanField
 
   class Meta:
     verbose_name = 'Carro'
     verbose_name_plural = 'Carros'
 
     def __str__(self):
-      return f'Carro: {self.marca} - {self.modelo}/{self.ano}'
+      return f'Carro: {self.Car_Model}/{self.Year}'
