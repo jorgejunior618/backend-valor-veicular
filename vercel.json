@@ -5,15 +5,7 @@
       "src": "backend/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "250mb",
-        "runtime": "Python3.9"
-      }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles_build"
+        "installCommand": "pip install -r requirements.txt --no-cache-dir && ./build_files.sh"
       }
     }
   ],
@@ -26,12 +18,5 @@
       "src": "/(.*)",
       "dest": "backend/wsgi.py"
     }
-  ],
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 30,
-      "memory": 3008,
-      "maxLambdaSize": "250mb"
-    }
-  }
+  ]
 }
