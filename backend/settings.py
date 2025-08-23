@@ -125,7 +125,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = 'https://storage.googleapis.com/seu-bucket/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
