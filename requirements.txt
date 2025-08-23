@@ -1,14 +1,19 @@
 # Core Django
 Django==5.2.5
+asgiref==3.9.1
+sqlparse==0.5.3
+
+# REST Framework
 djangorestframework==3.16.1
 django-cors-headers==4.7.0
 
 # Processamento de dados (essenciais)
-pandas==2.0.3
-numpy==1.24.0
+numpy==2.3.2
+pandas==2.3.2
 scikit-learn==1.7.1
 joblib==1.5.1
 category_encoders==2.8.1
 
 # Utilitários
 threadpoolctl==3.6.0
+tzdata==2025.2  # Necessário para timezones no pandas
