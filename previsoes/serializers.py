@@ -10,7 +10,7 @@ class CarroSerializer(serializers.ModelSerializer):
   Year = serializers.IntegerField(required=True, min_value=2000)
   Mileage = serializers.IntegerField(required=True, min_value=0)
   Options_Features = serializers.CharField(required=True, max_length=200)
-  Accident = serializers.BooleanField(required=True)
+  Accident = serializers.CharField(required=True, max_length=4)
 
   class Meta:
     model = Carro

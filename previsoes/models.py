@@ -11,7 +11,7 @@ class Carro(Base):
   Transmission = models.CharField
   Options_Features = models.CharField
   Condition = models.CharField
-  Accident = models.BooleanField
+  Accident = models.CharField
 
   class Meta:
     verbose_name = 'Carro'
