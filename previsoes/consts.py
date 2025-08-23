@@ -1,0 +1,5 @@
+MODEL_FILE = 'model.pkl'
+TE_ENCODER_FILE = 'te_encoder.pkl'
+LE_ENCODER_FILE = 'le_accident_encoder.pkl'
+MLB_TRANSFORMER_FILE = 'mlb_transformer.pkl'
+SCALER_FILE = 'scaler.pkl'
