@@ -1,0 +1,33 @@
+# .vercelignore
+# Arquivos de desenvolvimento
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs e databases
+*.log
+*.sqlite3
+*.db
+
+# Arquivos grandes desnecessários
+data/  # se tiver dados grandes
+models/  # se não for usar no deploy
+notebooks/
+*.ipynb
+
+# Testes e documentação
+tests/
+docs/
