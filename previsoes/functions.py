@@ -24,7 +24,7 @@ def preprocess_new_data(
     Retona:
         Um DataFrame com as features tratadas, pronto para ser submetido ao Modelo
     """
-    from pandas import DataFrame
+    from pandas import DataFrame, concat
 
     df_cols = [
         'Car Model', 'Year', 'Mileage', 'Fuel Type', 'Color',
@@ -49,7 +49,7 @@ def preprocess_new_data(
     new_car_features_encoded_df = DataFrame(new_car_features_encoded, columns=feature_column_names, index=new_car_df.index)
 
     cols_to_drop_after_mlb = ['Options/Features', 'Options/Features_list']
-    new_car_df = pd.concat([new_car_df.drop(cols_to_drop_after_mlb, axis=1, errors='ignore'), new_car_features_encoded_df], axis=1)
+    new_car_df = concat([new_car_df.drop(cols_to_drop_after_mlb, axis=1, errors='ignore'), new_car_features_encoded_df], axis=1)
     
     new_car_df[numerical_cols] = scaler.transform(new_car_df[numerical_cols])
 

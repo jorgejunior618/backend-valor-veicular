@@ -1,16 +1,10 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-from .consts import TE_ENCODER_FILE, LE_ENCODER_FILE, MLB_TRANSFORMER_FILE, SCALER_FILE, MODEL_FILE
-from .serializers import CarroSerializer
-from .functions import preprocess_new_data, predict_price
 
 class PrevisaoApiView(APIView):
   def __init__(self):
     from joblib import load
-
+    from .consts import TE_ENCODER_FILE, LE_ENCODER_FILE, MLB_TRANSFORMER_FILE, SCALER_FILE, MODEL_FILE
     try:
       print("[INICIALIZAÇÃO]: carregando modelo . . .")
       self.loaded_model = load(MODEL_FILE)
@@ -33,6 +27,11 @@ class PrevisaoApiView(APIView):
       self.scaler_loaded = None
       
   def post(self, req):
+    from rest_framework.response import Response
+    from rest_framework import status
+    from .serializers import CarroSerializer
+    from .functions import preprocess_new_data, predict_price
+
     if (self.loaded_model is None or
         self.te_encoder_loaded is None or
         self.le_encoder_loaded is None or
