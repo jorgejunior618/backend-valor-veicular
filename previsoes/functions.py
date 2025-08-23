@@ -1,17 +1,15 @@
-import pandas as pd
-
 def _split_features(features_string):
   if isinstance(features_string, str):
     return [feature.strip() for feature in features_string.split(',')]
   return []
 
 def preprocess_new_data(
-        entry_data: dict,
+        entry_data,
         te_encoder,
         le_encoder,
         mlb,
         scaler
-) -> pd.DataFrame:
+):
     """
     Preprocessa os dados de entrada de [entry_data] para o formato
     padronizado para o modelo na etapa de treino
@@ -26,6 +24,8 @@ def preprocess_new_data(
     Retona:
         Um DataFrame com as features tratadas, pronto para ser submetido ao Modelo
     """
+    from pandas import DataFrame
+
     df_cols = [
         'Car Model', 'Year', 'Mileage', 'Fuel Type', 'Color',
         'Transmission', 'Options/Features', 'Accident'
@@ -37,7 +37,7 @@ def preprocess_new_data(
         'Accident_Encoded',
         'Year'
     ] # 5 melhores Features selecionadas no treino do modelo
-    new_car_df = pd.DataFrame([{col: entry_data.get(col, None) for col in df_cols}])
+    new_car_df = DataFrame([{col: entry_data.get(col, None) for col in df_cols}])
     numerical_cols = ['Car Model_Encoded', 'Year', 'Mileage']
 
     new_car_df['Car Model_Encoded'] = te_encoder.transform(new_car_df['Car Model'])
@@ -46,7 +46,7 @@ def preprocess_new_data(
     new_car_df['Options/Features_list'] = new_car_df['Options/Features'].apply(_split_features)
     new_car_features_encoded = mlb.transform(new_car_df['Options/Features_list'])
     feature_column_names = [f'Feature_{c}' for c in mlb.classes_]
-    new_car_features_encoded_df = pd.DataFrame(new_car_features_encoded, columns=feature_column_names, index=new_car_df.index)
+    new_car_features_encoded_df = DataFrame(new_car_features_encoded, columns=feature_column_names, index=new_car_df.index)
 
     cols_to_drop_after_mlb = ['Options/Features', 'Options/Features_list']
     new_car_df = pd.concat([new_car_df.drop(cols_to_drop_after_mlb, axis=1, errors='ignore'), new_car_features_encoded_df], axis=1)

@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from joblib import load
 
 from .consts import TE_ENCODER_FILE, LE_ENCODER_FILE, MLB_TRANSFORMER_FILE, SCALER_FILE, MODEL_FILE
 from .serializers import CarroSerializer
@@ -10,26 +9,28 @@ from .functions import preprocess_new_data, predict_price
 
 class PrevisaoApiView(APIView):
   def __init__(self):
-      try:
-        print("[INICIALIZAÇÃO]: carregando modelo . . .")
-        self.loaded_model = load(MODEL_FILE)
-        print("[INICIALIZAÇÃO]: carregando encodera . . .")
-        self.te_encoder_loaded = load(TE_ENCODER_FILE)
-        self.le_encoder_loaded = load(LE_ENCODER_FILE)
-        print("[INICIALIZAÇÃO]: carregando transformer . . .")
-        self.mlb_loaded = load(MLB_TRANSFORMER_FILE)
-        print("[INICIALIZAÇÃO]: carregando scaler . . .")
-        self.scaler_loaded = load(SCALER_FILE)
-        print("[INICIALIZAÇÃO]: Arquivos de preprocessamento e Modelo carregados.")
+    from joblib import load
 
-      except Exception as e:
-        print(f"Ocorreu um erro ao carregar os arquivos: {e}")
-        
-        self.loaded_model = None
-        self.te_encoder_loaded = None
-        self.le_encoder_loaded = None
-        self.mlb_loaded = None
-        self.scaler_loaded = None
+    try:
+      print("[INICIALIZAÇÃO]: carregando modelo . . .")
+      self.loaded_model = load(MODEL_FILE)
+      print("[INICIALIZAÇÃO]: carregando encodera . . .")
+      self.te_encoder_loaded = load(TE_ENCODER_FILE)
+      self.le_encoder_loaded = load(LE_ENCODER_FILE)
+      print("[INICIALIZAÇÃO]: carregando transformer . . .")
+      self.mlb_loaded = load(MLB_TRANSFORMER_FILE)
+      print("[INICIALIZAÇÃO]: carregando scaler . . .")
+      self.scaler_loaded = load(SCALER_FILE)
+      print("[INICIALIZAÇÃO]: Arquivos de preprocessamento e Modelo carregados.")
+
+    except Exception as e:
+      print(f"Ocorreu um erro ao carregar os arquivos: {e}")
+      
+      self.loaded_model = None
+      self.te_encoder_loaded = None
+      self.le_encoder_loaded = None
+      self.mlb_loaded = None
+      self.scaler_loaded = None
       
   def post(self, req):
     if (self.loaded_model is None or
