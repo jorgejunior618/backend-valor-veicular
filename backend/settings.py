@@ -17,6 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 PORT = os.environ.get('PORT', 8080)
+CSRF_TRUSTED_ORIGINS = ['https://*.run.app', 'https://*.appspot.com']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
